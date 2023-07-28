@@ -1,5 +1,3 @@
-import signIn from "../../components/signIn";
-import signOut from "../../components/signOut";
 
 const SignInPage = () => {
     return (
