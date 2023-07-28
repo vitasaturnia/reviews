@@ -1,12 +1,6 @@
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { CredentialsProvider } from "next-auth/providers";
 import { type GetServerSidePropsContext } from "next";
-import {
-  getServerSession,
-  type NextAuthOptions,
-  type DefaultSession,
-} from "next-auth";
-import DiscordProvider from "next-auth/providers/discord";
-import { env } from "~/env.mjs";
+import { getServerSession, type NextAuthOptions, type DefaultSession } from "next-auth";
 import { prisma } from "~/server/db";
 
 /**
@@ -45,19 +39,25 @@ export const authOptions: NextAuthOptions = {
   },
   adapter: PrismaAdapter(prisma),
   providers: [
-    DiscordProvider({
-      clientId: env.DISCORD_CLIENT_ID,
-      clientSecret: env.DISCORD_CLIENT_SECRET,
+    CredentialsProvider({
+      // The following options can be customized based on your needs
+      // Refer to the NextAuth.js documentation for more options and details
+      credentials: {
+        // The property used to store the user's email address in the database
+        email: { label: "Email", type: "text" },
+        // The property used to store the user's password in the database
+        password: { label: "Password", type: "password" },
+        // The property used to store the user's username in the database
+        // If you don't need a username, you can remove this option
+        // username: { label: "Username", type: "text" },
+      },
     }),
-    /**
-     * ...add more providers here.
-     *
-     * Most other providers require a bit more work than the Discord provider. For example, the
-     * GitHub provider requires you to add the `refresh_token_expires_in` field to the Account
-     * model. Refer to the NextAuth.js docs for the provider you want to use. Example:
-     *
-     * @see https://next-auth.js.org/providers/github
-     */
+    // Add other providers here if needed
+    // DiscordProvider({
+    //   clientId: env.DISCORD_CLIENT_ID,
+    //   clientSecret: env.DISCORD_CLIENT_SECRET,
+    // }),
+    // ...add more providers as needed
   ],
 };
 
