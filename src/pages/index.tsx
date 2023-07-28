@@ -1,6 +1,5 @@
 import styles from "./index.module.css";
 import Head from "next/head";
-import Link from "next/link";
 import Header from "../components/Header.js";
 
 export default function Home() {
