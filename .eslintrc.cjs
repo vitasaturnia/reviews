@@ -1,26 +1,10 @@
 /** @type {import("eslint").Linter.Config} */
 const config = {
-  parser: "@typescript-eslint/parser",
-  parserOptions: {
-    project: true,
-  },
-  plugins: ["@typescript-eslint"],
-  extends: [
-    "next/core-web-vitals",
-    "plugin:@typescript-eslint/recommended-type-checked",
-    "plugin:@typescript-eslint/stylistic-type-checked",
-  ],
+  extends: ["next/core-web-vitals"],
   rules: {
-    "@typescript-eslint/consistent-type-imports": [
-      "warn",
-      {
-        prefer: "type-imports",
-        fixStyle: "inline-type-imports",
-      },
-    ],
-    "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
+    // Add any ESLint rules you want to enable here
   },
+  ignorePatterns: ["_app.js", "index.js", "next.config.js", "public/*", "out/*"],
 };
-ignorePatterns: ["_app.js", "index.js", "next.config.js", "public/*", "out/*"],
 
 module.exports = config;
