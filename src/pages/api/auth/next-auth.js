@@ -1,7 +1,7 @@
 // pages/api/auth/nextauth.js
 import NextAuth from "next-auth";
 import { providers } from "next-auth/client";
-import { supabase } from "../../../supabase"; // Import your supabase instance
+import { supabase } from "../../../../supabase.js"; // Import your supabase instance
 
 export default NextAuth({
     providers: [
