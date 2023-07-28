@@ -1,10 +1,7 @@
 // pages/api/auth/nextauth.js
 import NextAuth from "next-auth";
 import Providers from "next-auth/providers";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { supabase } from "../../../../supabase"; // Import your supabase instance
 
 export default NextAuth({
     providers: [
@@ -17,21 +14,20 @@ export default NextAuth({
             async authorize(credentials) {
                 // Your custom authentication logic here to validate username and password
                 // For example, check against a database or external API.
-                const user = await prisma.user.findUnique({
-                    where: {
-                        username: credentials.username,
-                    },
+                const { user, error } = await supabase.auth.signIn({
+                    email: credentials.username,
+                    password: credentials.password,
                 });
 
-                if (user && user.password === credentials.password) {
-                    return { id: user.id, name: user.username };
+                if (user) {
+                    return { id: user.id, name: user.email };
                 }
+
                 return null;
             },
         }),
-        // Remove the Discord provider from here
         // Add other authentication providers here if needed
     ],
-    adapter: PrismaAdapter(prisma),
+    adapter: null, // Remove the adapter configuration since we are not using Prisma
     // Add any other custom configurations here if needed
 });
