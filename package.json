@@ -30,7 +30,6 @@
     "eslint": "^8.45.0",
     "eslint-config-next": "^13.4.2",
     "prisma": "^5.0.0",
-    "typescript": "^5.0.4"
   },
   "ct3aMetadata": {
     "initVersion": "7.16.0"

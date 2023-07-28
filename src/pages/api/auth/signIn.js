@@ -2,7 +2,6 @@
 const SignInPage = () => {
     return (
         <div className="container">
-            <SignIn />
         </div>
     );
 };
