@@ -21,5 +21,6 @@ const config = {
     "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
   },
 };
+ignorePatterns: ["_app.js", "index.js", "next.config.js", "public/*", "out/*"],
 
 module.exports = config;
