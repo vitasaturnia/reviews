@@ -16,13 +16,11 @@ export default function Home() {
             </Head>
             <main className={styles.main}>
                 <div className={styles.container}>
-                    <h1 className={styles.title}>
-                        Originals Leaderboard
-                    </h1>
+                    <h1 className={styles.title}>Originals Leaderboard</h1>
                     {!loading && (
                         <div>
                             {session ? (
-                                <p>Welcome, {session.user.name}!</p>
+                                <p>Welcome, {session.user.name || "User"}!</p>
                                 /* Add other content for logged-in users */
                             ) : (
                                 <p>You are not logged in.</p>
