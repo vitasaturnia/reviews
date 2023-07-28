@@ -1,10 +1,10 @@
 import NextAuth from "next-auth";
-import Providers from "next-auth/providers"; // Correct import statement for providers
+import { providers } from "next-auth"; // Corrected import statement for providers
 import { supabase } from "../../../../supabase.js";
 
 export default NextAuth({
     providers: [
-        Providers.Credentials({
+        providers.Credentials({
             name: "Credentials",
             credentials: {
                 username: { label: "Username", type: "text" },
